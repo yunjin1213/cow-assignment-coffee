@@ -18,18 +18,10 @@ public class Cafe {
                     cafeManager.introduceMenu();
                     orderSystem.order(); // 주문 처리
                 }
-                case 2 -> {
-                    orderSystem.cancelOrder(); // 주문 취소 처리
-                }
-                case 3 -> {
-                    orderSystem.pay(); // 결제 처리
-                }
-                case 4 -> {
-                    cafeManager.finishTalking(); // 대화 종료
-                }
-                default -> {
-                    cafeManager.faultValue(); // 잘못된 입력 처리
-                }
+                case 2 -> orderSystem.cancelOrder(); // 주문 취소 처리
+                case 3 -> orderSystem.pay(); // 결제 처리
+                case 4 -> cafeManager.finishTalking(); // 대화 종료
+                default -> cafeManager.faultValue(); // 잘못된 입력 처리
             }
         }
     }

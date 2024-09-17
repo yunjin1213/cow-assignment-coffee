@@ -2,27 +2,36 @@ package cafe;
 
 public class Cafe {
 
-    public static void main(String[] args) {
-        CafeManager cafeManager = new CafeManager();
-        User user = new User(); // User 객체 생성
-        OrderSystem orderSystem = new OrderSystemImpl(user); // OrderSystemImpl 인스턴스 생성
+	public static void main(String[] args) {
 
-        cafeManager.startTalking();
+		CafeManager cafeManager = new CafeManager();
+		User user = new User();
+		OrderSystem orderSystem = new OrderSystemImpl(user);
 
-        while (cafeManager.isTalking()) {
-            cafeManager.introduceFunction();
-            int talkNumber = cafeManager.askNumber();
+		cafeManager.startTalking();
 
-            switch (talkNumber) {
-                case 1 -> {
-                    cafeManager.introduceMenu();
-                    orderSystem.order(); // 주문 처리
-                }
-                case 2 -> orderSystem.cancelOrder(); // 주문 취소 처리
-                case 3 -> orderSystem.pay(); // 결제 처리
-                case 4 -> cafeManager.finishTalking(); // 대화 종료
-                default -> cafeManager.faultValue(); // 잘못된 입력 처리
-            }
-        }
-    }
+		while (cafeManager.isTalking()) {
+			cafeManager.introduceFunction();
+			int talkNumber = cafeManager.askNumber();
+
+			switch (talkNumber) {
+			case 1 -> {
+				cafeManager.introduceMenu();
+				orderSystem.order();
+			}
+			case 2 -> orderSystem.cancelOrder();
+			case 3 -> orderSystem.pay();
+			case 4 -> {
+				cafeManager.finishTalking();
+				System.out.println("프로그램을 종료합니다.");
+				System.exit(0);
+			}
+
+			default -> {
+				cafeManager.faultValue();
+				System.out.println("잘못된 입력입니다. 1, 2, 3, 4 중 선택하여 주세요.");
+			}
+			}
+		}
+	}
 }
